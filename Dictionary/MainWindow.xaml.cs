@@ -78,7 +78,7 @@ namespace Dictionary
                 }
             }
             translated_words.ItemsSource = searchedWordsListList;
-            selected_word_and_desc.Content = selectedItem.Word + "  opis: " +selectedItem.Description;
+            selected_word_and_desc.Content = selectedItem.Word + "   opis: " +selectedItem.Description;
         }
     }   
 }
