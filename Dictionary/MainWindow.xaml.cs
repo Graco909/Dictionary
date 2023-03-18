@@ -40,8 +40,6 @@ namespace Dictionary
             allEnglishWordsList = connector.GetPerson_All_eng();
 
             matchingWords.ItemsSource= allPolishWordsList;
-            
-
         }
 
 
@@ -60,8 +58,6 @@ namespace Dictionary
                 }
             }
             matchingWords.ItemsSource = searchedWordsList;
-
-
         }
 
 
@@ -78,7 +74,7 @@ namespace Dictionary
                 }
             }
             translated_words.ItemsSource = searchedWordsListList;
-            selected_word_and_desc.Content = selectedItem.Word + "   opis: " +selectedItem.Description;
+            selected_word_and_desc.Content = selectedItem.Word;
         }
     }   
 }

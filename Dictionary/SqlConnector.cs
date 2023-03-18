@@ -55,7 +55,7 @@ namespace Dictionary
             {
                 Id = 3,
                 Word = "03",
-                Description = "three"
+                Description = "threeeeeeeeee eeeeeeeeeeee eeeeeeeeeeeeeeeeee Eeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeee"
             });
 
             //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(CnnString(db)))
