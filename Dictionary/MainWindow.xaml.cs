@@ -23,34 +23,43 @@ namespace Dictionary
     {
         SqlConnector connector;
 
-        List<PolishWord> allPolishWordsList = new List<PolishWord>();
-        List<PolishWord> searchedWordsList = new List<PolishWord>();
-        List<PolishWord> searchedWordsListList = new List<PolishWord>();
+        List<Word_class> AllWordsList = new List<Word_class>();
+        List<Word_class> searchedWordsList = new List<Word_class>();
+        List<Word_class> TranslatedWordsList = new List<Word_class>();
+        List<Word_class> AllWords2langList = new List<Word_class>();
 
-        List<EnglishWord> allEnglishWordsList = new List<EnglishWord>();
-
-        PolishWord selectedItem;
+        Word_class selectedItem;
         string wyszukane_slowo = "";
+        bool lang_selected= true;
         public MainWindow()
         {
             InitializeComponent();
 
             connector= new SqlConnector();
-            allPolishWordsList = connector.GetPerson_All();
-            allEnglishWordsList = connector.GetPerson_All_eng();
 
-            matchingWords.ItemsSource= allPolishWordsList;
+            if (lang_selected)
+            {
+                AllWordsList = connector.GetPerson_All();
+                AllWords2langList = connector.GetPerson_All_eng();
+            }
+            else
+            {
+                AllWords2langList = connector.GetPerson_All();
+                AllWordsList  = connector.GetPerson_All_eng();
+            }
+
+            matchingWords.ItemsSource= AllWordsList;
         }
 
 
-        private void search_bar_TextChanged(object sender, TextChangedEventArgs e)
+        private void search_bar_TextChanged(object sender, TextChangedEventArgs e) //wyszukiwanie słów 
         {
             wyszukane_slowo = search_bar.Text.ToString();
 
-            matchingWords.ItemsSource = allPolishWordsList;
+            matchingWords.ItemsSource = AllWordsList;
             searchedWordsList.Clear();
 
-            foreach (PolishWord word in allPolishWordsList)
+            foreach (Word_class word in AllWordsList)
             {
                 if (word.Word.Contains(wyszukane_slowo) || (word.Description.Contains(wyszukane_slowo)))
                 {
@@ -61,20 +70,38 @@ namespace Dictionary
         }
 
 
-        private void matchingWords_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void matchingWords_SelectionChanged(object sender, SelectionChangedEventArgs e) // znajdowanie dopasowanych przetłumaczonych słów
         {
-            try { selectedItem = (PolishWord)matchingWords.Items.GetItemAt(matchingWords.SelectedIndex); }catch{} // zrobić tak ęzby przy zmianie wyszukiwania niewywalało programu bez użyczia tego try / catch
-            translated_words.ItemsSource = allPolishWordsList;
-            searchedWordsListList.Clear();
-            foreach (EnglishWord word in allEnglishWordsList)
+            try { selectedItem = (Word_class)matchingWords.Items.GetItemAt(matchingWords.SelectedIndex); }catch{} // zrobić tak ęzby przy zmianie wyszukiwania niewywalało programu bez użyczia tego try / catch
+            translated_words.ItemsSource = AllWordsList;
+            TranslatedWordsList.Clear();
+            foreach (Word_class word in AllWords2langList)
             {
                 if (word.Id == selectedItem.Id)
                 {
-                    searchedWordsListList.Add(word);
+                    TranslatedWordsList.Add(word);
                 }
             }
-            translated_words.ItemsSource = searchedWordsListList;
+            translated_words.ItemsSource = TranslatedWordsList;
             selected_word_and_desc.Content = selectedItem.Word;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) //guzik do zmiany języka z turego i na ktury się tłumaczy 
+        {
+            if (lang_selected)
+            {
+                AllWordsList = connector.GetPerson_All();
+                AllWords2langList = connector.GetPerson_All_eng();
+            }
+            else
+            {
+                AllWords2langList = connector.GetPerson_All();
+                AllWordsList = connector.GetPerson_All_eng();
+            }
+            TranslatedWordsList.Clear();
+            translated_words.ItemsSource = TranslatedWordsList; ;
+            matchingWords.ItemsSource = AllWordsList;
+            lang_selected = !lang_selected;
         }
     }   
 }

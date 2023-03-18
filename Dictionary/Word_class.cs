@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dictionary
 {
-    public class PolishWord
+    public class Word_class
     {
         public int Id { get; set; }
         public string Word { get; set; }

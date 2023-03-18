@@ -18,40 +18,40 @@ namespace Dictionary
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
-        public List<EnglishWord> GetPerson_All_eng()
+        public List<Word_class> GetPerson_All_eng()
         {
-            List<EnglishWord> output = new List<EnglishWord>();
-            output.Add(new EnglishWord()
+            List<Word_class> output = new List<Word_class>();
+            output.Add(new Word_class()
             {
                 Id = 1,
                 Word = "01",
                 Description = "uno"
             });
-            output.Add(new EnglishWord()
+            output.Add(new Word_class()
             {
                 Id = 2,
                 Word = "02",
                 Description = "dos"
             });
-            output.Add(new EnglishWord()
+            output.Add(new Word_class()
             {
                 Id = 3,
                 Word = "03",
                 Description = "tres"
             });
-            output.Add(new EnglishWord()
+            output.Add(new Word_class()
             {
                 Id = 1,
                 Word = "01",
                 Description = "one"
             });
-            output.Add(new EnglishWord()
+            output.Add(new Word_class()
             {
                 Id = 2,
                 Word = "02",
                 Description = "two"
             });
-            output.Add(new EnglishWord()
+            output.Add(new Word_class()
             {
                 Id = 3,
                 Word = "03",
@@ -60,28 +60,28 @@ namespace Dictionary
 
             //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(CnnString(db)))
             //{
-            //    output = connection.Query<PolishWord>("dbo.spPolishWords_GetAll").ToList();
+            //    output = connection.Query<Word>("dbo.spWords_GetAll").ToList();
             //}
 
             return output;
         }
 
-        public List<PolishWord> GetPerson_All()
+        public List<Word_class> GetPerson_All()
         {
-            List<PolishWord> output=new List<PolishWord>();
-            output.Add(new PolishWord()
+            List<Word_class> output=new List<Word_class>();
+            output.Add(new Word_class()
             {
                 Id = 1,
                 Word = "01",
                 Description = "jeden"
             }) ;
-            output.Add(new PolishWord()
+            output.Add(new Word_class()
             {
                 Id = 2,
                 Word = "02",
                 Description = "dwa"
             });
-            output.Add(new PolishWord()
+            output.Add(new Word_class()
             {
                 Id = 3,
                 Word = "03",
@@ -90,7 +90,7 @@ namespace Dictionary
 
             //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(CnnString(db)))
             //{
-            //    output = connection.Query<PolishWord>("dbo.spPolishWords_GetAll").ToList();
+            //    output = connection.Query<Word>("dbo.spWords_GetAll").ToList();
             //}
 
             return output;

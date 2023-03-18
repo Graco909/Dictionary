@@ -59,8 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EnglishWord.cs" />
-    <Compile Include="PolishWord.cs" />
+    <Compile Include="Word_class.cs" />
     <Compile Include="SqlConnector.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
