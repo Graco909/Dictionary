@@ -30,7 +30,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="matchingWords" HorizontalAlignment="Center" Margin="0,80,0,0" Width="230" d:ItemsSource="{d:SampleData ItemCount=5}" Height="344" VerticalAlignment="Top" SelectionChanged="matchingWords_SelectionChanged">
+        <ListView x:Name="matchingWords" HorizontalAlignment="Center" Margin="0,80,0,0" Width="230" d:ItemsSource="{d:SampleData ItemCount=5}" Height="344" VerticalAlignment="Top" SelectionChanged="matchingWords_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.Background>
                 <SolidColorBrush Color="White" Opacity="0.5"/>
             </ListView.Background>
@@ -38,7 +38,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
                         <TextBlock  Text="{Binding Word}" Margin="5 2 2 2" FontWeight="Bold"/>
-                        <TextBlock  Text="{Binding Description}" MaxWidth="225" TextWrapping="Wrap"/>
+                        <TextBlock  Text="{Binding Description}" MaxWidth="220" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -57,7 +57,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
                         <TextBlock  Text="{Binding Word}" Margin="5 2 2 2" FontWeight="Bold"/>
-                        <TextBlock  Text="{Binding Description}" MaxWidth="225" TextWrapping="Wrap"/>
+                        <TextBlock  Text="{Binding Description}" MaxWidth="220" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

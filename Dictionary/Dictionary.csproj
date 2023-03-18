@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="translation_class.cs" />
     <Compile Include="Word_class.cs" />
     <Compile Include="SqlConnector.cs" />
     <Page Include="MainWindow.xaml">

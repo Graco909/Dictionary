@@ -28,14 +28,18 @@ namespace Dictionary
         List<Word_class> TranslatedWordsList = new List<Word_class>();
         List<Word_class> AllWords2langList = new List<Word_class>();
 
+        List<translation_class> TranslationList = new List<translation_class>();
+
+        Word_class temp = new Word_class();
         Word_class selectedItem;
         string wyszukane_slowo = "";
-        bool lang_selected= true;
+        bool lang_selected= true; // true - polski false - angilski jako język z którego się tłumaczy
         public MainWindow()
         {
             InitializeComponent();
 
             connector= new SqlConnector();
+            TranslationList = connector.Get_Translation_List();
 
             if (lang_selected)
             {
@@ -50,6 +54,8 @@ namespace Dictionary
 
             matchingWords.ItemsSource= AllWordsList;
         }
+
+
 
 
         private void search_bar_TextChanged(object sender, TextChangedEventArgs e) //wyszukiwanie słów 
@@ -70,25 +76,47 @@ namespace Dictionary
         }
 
 
+
+
         private void matchingWords_SelectionChanged(object sender, SelectionChangedEventArgs e) // znajdowanie dopasowanych przetłumaczonych słów
         {
-            try { selectedItem = (Word_class)matchingWords.Items.GetItemAt(matchingWords.SelectedIndex); }catch{} // zrobić tak ęzby przy zmianie wyszukiwania niewywalało programu bez użyczia tego try / catch
-            translated_words.ItemsSource = AllWordsList;
+            try { 
+            selectedItem = (Word_class)matchingWords.Items.GetItemAt(matchingWords.SelectedIndex);  // zrobić tak ęzby przy zmianie wyszukiwania niewywalało programu bez użyczia tego try / catch
+            translated_words.ItemsSource = AllWords2langList;
             TranslatedWordsList.Clear();
-            foreach (Word_class word in AllWords2langList)
+            foreach (translation_class trans in TranslationList)
             {
-                if (word.Id == selectedItem.Id)
+                if (lang_selected)
                 {
-                    TranslatedWordsList.Add(word);
+                    if (trans.Pl_Word_Id == selectedItem.Id)
+                    {
+                        
+                        temp = (Word_class)AllWords2langList.Find(x => x.Id == trans.Eng_Word_Id);
+                        TranslatedWordsList.Add(temp);
+                    }
+                }
+                else 
+                {
+                    if (trans.Eng_Word_Id == selectedItem.Id)
+                    {
+
+                        temp = (Word_class)AllWords2langList.Find(x => x.Id == trans.Pl_Word_Id);
+                        TranslatedWordsList.Add(temp);
+                    }
+
                 }
             }
             translated_words.ItemsSource = TranslatedWordsList;
             selected_word_and_desc.Content = selectedItem.Word;
+            }
+            catch { }
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e) //guzik do zmiany języka z turego i na ktury się tłumaczy 
         {
-            if (lang_selected)
+            if (!lang_selected)
             {
                 AllWordsList = connector.GetPerson_All();
                 AllWords2langList = connector.GetPerson_All_eng();
@@ -98,10 +126,15 @@ namespace Dictionary
                 AllWords2langList = connector.GetPerson_All();
                 AllWordsList = connector.GetPerson_All_eng();
             }
+            
             TranslatedWordsList.Clear();
-            translated_words.ItemsSource = TranslatedWordsList; ;
+            translated_words.ItemsSource = AllWordsList;
+            translated_words.ItemsSource = TranslatedWordsList;
+
             matchingWords.ItemsSource = AllWordsList;
+
             lang_selected = !lang_selected;
+            search_bar.Text = "";
         }
     }   
 }
