@@ -120,8 +120,12 @@ namespace Dictionary
             {
                 ImgP.Source = new BitmapImage(new Uri("./../../Eng_flag.png", UriKind.Relative));
                 ImgL.Source = new BitmapImage(new Uri("./../../Pl_flag.png", UriKind.Relative));
+
                 AllWordsList = connector.GetPerson_All();
                 AllWords2langList = connector.GetPerson_All_eng();
+
+                search_bar_label.Content = "Wyszukaj słowo:";
+                lang_switch.Content = "Zmiana Języka";
             }
             else
             {
@@ -130,6 +134,9 @@ namespace Dictionary
                 
                 ImgL.Source = new BitmapImage(new Uri("./../../Eng_flag.png", UriKind.Relative));
                 ImgP.Source = new BitmapImage(new Uri("./../../Pl_flag.png", UriKind.Relative));
+
+                search_bar_label.Content = "Search a word:";
+                lang_switch.Content = "Language Change";
             }
             
             TranslatedWordsList.Clear();
@@ -139,7 +146,6 @@ namespace Dictionary
             matchingWords.ItemsSource = AllWordsList;
 
             selected_word_and_desc.Content = "";
-
             lang_selected = !lang_selected;
             search_bar.Text = "";
         }

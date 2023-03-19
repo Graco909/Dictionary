@@ -86,7 +86,7 @@
                 <SolidColorBrush Color="White" Opacity="0.75"/>
             </Label.Background>
         </Label>
-        <Button Content="Zmiana Języka" HorizontalAlignment="Left" Margin="210,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.53,0.503" Grid.ColumnSpan="2" Click="Button_Click" Foreground="#FF551463">
+        <Button x:Name="lang_switch" Content="Zmiana Języka" HorizontalAlignment="Left" Margin="195,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.563" Click="Button_Click" Foreground="#FF551463" Grid.ColumnSpan="2" Width="110">
             <Button.Background>
                 <SolidColorBrush Color="White" Opacity="0.75"/>
             </Button.Background>
