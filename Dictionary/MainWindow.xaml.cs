@@ -118,6 +118,8 @@ namespace Dictionary
         {
             if (!lang_selected)
             {
+                ImgP.Source = new BitmapImage(new Uri("./../../Eng_flag.png", UriKind.Relative));
+                ImgL.Source = new BitmapImage(new Uri("./../../Pl_flag.png", UriKind.Relative));
                 AllWordsList = connector.GetPerson_All();
                 AllWords2langList = connector.GetPerson_All_eng();
             }
@@ -125,6 +127,9 @@ namespace Dictionary
             {
                 AllWords2langList = connector.GetPerson_All();
                 AllWordsList = connector.GetPerson_All_eng();
+                
+                ImgL.Source = new BitmapImage(new Uri("./../../Eng_flag.png", UriKind.Relative));
+                ImgP.Source = new BitmapImage(new Uri("./../../Pl_flag.png", UriKind.Relative));
             }
             
             TranslatedWordsList.Clear();
@@ -132,6 +137,8 @@ namespace Dictionary
             translated_words.ItemsSource = TranslatedWordsList;
 
             matchingWords.ItemsSource = AllWordsList;
+
+            selected_word_and_desc.Content = "";
 
             lang_selected = !lang_selected;
             search_bar.Text = "";

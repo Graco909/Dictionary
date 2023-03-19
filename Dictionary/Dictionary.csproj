@@ -105,5 +105,11 @@
   <ItemGroup>
     <Resource Include="j5eA8qe-_400x400.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pl_flag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Eng_flag.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
