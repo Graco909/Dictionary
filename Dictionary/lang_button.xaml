@@ -11,7 +11,7 @@
         </Setter>
     </Style>
     <Style TargetType="Border">
-        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="CornerRadius" Value="15"/>
     </Style>
     <SolidColorBrush x:Key="Button.Static.Background" Color="#88FFFFFF"/>
     <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
