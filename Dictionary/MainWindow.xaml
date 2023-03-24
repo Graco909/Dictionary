@@ -5,19 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500"
-        ResizeMode="NoResize">
+        Title="Dictionary" Height="925" Width="800" WindowStyle="ThreeDBorderWindow" Icon="/flag_icon.png" ResizeMode="NoResize" Cursor="Cross">
     <Window.Background>
-        <ImageBrush/>
+        <RadialGradientBrush>
+            <GradientStop Offset="0"/>
+            <GradientStop Color="Black" Offset="1"/>
+        </RadialGradientBrush>
     </Window.Background>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="flagL" Grid.Column="0"  >
-            <Image x:Name="ImgL" Source="/Pl_flag.png" Width="250" Height="435" Panel.ZIndex="100" Stretch="Fill" >
+            <Image x:Name="ImgL" Source="/Pl_flag.png" Width="403" Height="912" Panel.ZIndex="100" Stretch="Fill" >
                 <Image.OpacityMask>
                     <LinearGradientBrush EndPoint="0.5,1" Opacity="0.5" StartPoint="0.5,0" SpreadMethod="Pad" MappingMode="Absolute">
                         <GradientStop Color="Black"/>
@@ -31,7 +36,7 @@
             </Image>
         </StackPanel>
         <StackPanel x:Name="FlagP" Grid.Column="1"  >
-            <Image x:Name="ImgP" Source="/Eng_flag.png" Width="250" Height="435" Stretch="Fill">
+            <Image x:Name="ImgP" Source="/Eng_flag.png" Width="396" Height="912" Stretch="Fill">
                 <Image.OpacityMask>
                     <LinearGradientBrush EndPoint="0.5,1" Opacity="0.5" StartPoint="0.5,0" SpreadMethod="Pad" MappingMode="Absolute">
                         <GradientStop Color="Black"/>
@@ -44,53 +49,48 @@
                 </Image.OpacityMask>
             </Image>
         </StackPanel>
-
-        <ListView x:Name="matchingWords" HorizontalAlignment="Center" Margin="0,80,0,0" Width="230" d:ItemsSource="{d:SampleData ItemCount=5}" Height="344" VerticalAlignment="Top" SelectionChanged="matchingWords_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-            <ListView.Background>
-                <SolidColorBrush Color="White" Opacity="0.75"/>
-            </ListView.Background>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock  Text="{Binding Word}" Margin="5 2 2 2" FontWeight="Bold"/>
-                        <TextBlock  Text="{Binding Description}" MaxWidth="220" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <TextBox x:Name="search_bar" HorizontalAlignment="Center" Height="30" Margin="0,40,0,0" TextWrapping="NoWrap" Text="{Binding wyszukane_slowo}" VerticalAlignment="Top" Width="230" TextChanged="search_bar_TextChanged">
-            <TextBox.Background>
-                <SolidColorBrush Color="White" Opacity="0.75"/>
-            </TextBox.Background>
-        </TextBox>
-        <Label x:Name="search_bar_label" Content="Wyszukaj słowo" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="99" Height="25">
-            <Label.Background>
-                <SolidColorBrush Color="White" Opacity="0.75"/>
-            </Label.Background>
-        </Label>
-        <ListView x:Name="translated_words" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,80,10,0" Height="344" VerticalAlignment="Top" ScrollViewer.CanContentScroll="False" UseLayoutRounding="False">
-            <ListView.Background>
-                <SolidColorBrush Color="White" Opacity="0.75"/>
-            </ListView.Background>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock  Text="{Binding Word}" Margin="5 2 2 2" FontWeight="Bold"/>
-                        <TextBlock  Text="{Binding Description}" MaxWidth="220" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Label x:Name="selected_word_and_desc" Content="" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="230" FontWeight="Bold" Height="30" Grid.Column="1">
-            <Label.Background>
-                <SolidColorBrush Color="White" Opacity="0.75"/>
-            </Label.Background>
-        </Label>
-        <Button x:Name="lang_switch" Content="Zmiana Języka" HorizontalAlignment="Left" Margin="195,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.563" Click="Button_Click" Foreground="#FF551463" Grid.ColumnSpan="2" Width="110">
+        <Border CornerRadius="20" Background="#88ffffff" Width="370" HorizontalAlignment="Left" Height="744" BorderThickness="2" VerticalAlignment="Top" Margin="10,127,0,0">
+            <ListView x:Name="matchingWords" Margin="10,10,10,0" d:ItemsSource="{d:SampleData ItemCount=50}"   Height="734" VerticalAlignment="Top" SelectionChanged="matchingWords_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock  Text="{Binding Word}" MaxWidth="370"  Margin="5 2 2 5" FontWeight="Bold"/>
+                            <!--<TextBlock  Text="{Binding Description}" MaxWidth="370"  TextWrapping="Wrap"/>-->
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+        <Border x:Name="border_search"  CornerRadius="20" Background="#88ffffff" Width="370" HorizontalAlignment="Left" Margin="10,56,0,773" Padding="5,5,5,5" Panel.ZIndex="999">
+            <TextBox x:Name="search_bar"  HorizontalAlignment="Center" TextWrapping="NoWrap" Text="{Binding searched_word}" VerticalAlignment="Center" Width="350" TextChanged="search_bar_TextChanged" FontSize="18" InputScope="Default" VerticalContentAlignment="Center" FontWeight="Bold"  Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Height="61"/>
+        </Border>
+        <Border  CornerRadius="20" Background="#88ffffff" Margin="10,10,187,836" Padding="5,5,5,5" VerticalAlignment="Center">
+            <Label x:Name="search_bar_label" Content="Wyszukaj słowo" Padding="0,7,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="18" Background="{x:Null}" Width="170" Height="43"/>
+        </Border>
+        <Border Grid.Column="1" CornerRadius="20" Background="#88ffffff" Width="370" HorizontalAlignment="Left" Height="744" VerticalAlignment="Top" Margin="10,127,0,0">
+            <ListView x:Name="translated_words" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="10,10,10,0" Height="732" VerticalAlignment="Top" ScrollViewer.CanContentScroll="False" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="18" BorderBrush="{x:Null}" Background="{x:Null}" Padding="3,0,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock  Text="{Binding Word}" MaxWidth="370"  Margin="5 2 2 2" FontWeight="Bold"/>
+                            <TextBlock  Text="{Binding Description}" MaxWidth="370" TextWrapping="Wrap" Opacity="80"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+        <Button x:Name="lang_switch" Content="Zmiana Języka" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.563" Click="Button_Click" Foreground="Black" Width="156" FontSize="18" Height="38" Grid.ColumnSpan="2" BorderBrush="{x:Null}">
             <Button.Background>
-                <SolidColorBrush Color="White" Opacity="0.75"/>
+                <SolidColorBrush Color="#88FFFFFF" Opacity="1"/>
             </Button.Background>
         </Button>
+        <Border x:Name="border_label" CornerRadius="20" Width="370" Margin="0,56,0,773" Padding="5,5,5,5" Grid.Column="1" HorizontalAlignment="Center" >
+            <Border.Background>
+                <SolidColorBrush Color="#88FFFFFF" Opacity="1"/>
+            </Border.Background>
+            <Label x:Name="selected_word_and_desc" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="350" FontWeight="Bold" Grid.Column="1" FontSize="18" VerticalContentAlignment="Center" Padding="10,5,5,5" Height="61" Background="{x:Null}"/>
+        </Border>
+        
 
     </Grid>
 </Window>

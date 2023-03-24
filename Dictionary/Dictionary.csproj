@@ -62,6 +62,10 @@
     <Compile Include="translation_class.cs" />
     <Compile Include="Word_class.cs" />
     <Compile Include="SqlConnector.cs" />
+    <Page Include="lang_button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +114,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Eng_flag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="flag_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

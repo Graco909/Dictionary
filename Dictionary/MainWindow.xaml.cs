@@ -32,13 +32,13 @@ namespace Dictionary
 
         Word_class temp = new Word_class();
         Word_class selectedItem;
-        string wyszukane_slowo = "";
-        bool lang_selected= true; // true - polski false - angilski jako język z którego się tłumaczy
+        string searched_word = "";
+        bool lang_selected = true; // true - polski false - angilski jako język z którego się tłumaczy
         public MainWindow()
         {
             InitializeComponent();
 
-            connector= new SqlConnector();
+            connector = new SqlConnector();
             TranslationList = connector.Get_Translation_List();
 
             if (lang_selected)
@@ -49,10 +49,10 @@ namespace Dictionary
             else
             {
                 AllWords2langList = connector.GetPerson_All();
-                AllWordsList  = connector.GetPerson_All_eng();
+                AllWordsList = connector.GetPerson_All_eng();
             }
 
-            matchingWords.ItemsSource= AllWordsList;
+            matchingWords.ItemsSource = AllWordsList;
         }
 
 
@@ -60,14 +60,14 @@ namespace Dictionary
 
         private void search_bar_TextChanged(object sender, TextChangedEventArgs e) //wyszukiwanie słów 
         {
-            wyszukane_slowo = search_bar.Text.ToString();
+            searched_word = search_bar.Text.ToString();
 
             matchingWords.ItemsSource = AllWordsList;
             searchedWordsList.Clear();
 
             foreach (Word_class word in AllWordsList)
             {
-                if (word.Word.Contains(wyszukane_slowo) || (word.Description.Contains(wyszukane_slowo)))
+                if (word.Word.Contains(searched_word) || (word.Description.Contains(searched_word)))
                 {
                     searchedWordsList.Add(word);
                 }
@@ -80,34 +80,35 @@ namespace Dictionary
 
         private void matchingWords_SelectionChanged(object sender, SelectionChangedEventArgs e) // znajdowanie dopasowanych przetłumaczonych słów
         {
-            try { 
-            selectedItem = (Word_class)matchingWords.Items.GetItemAt(matchingWords.SelectedIndex);  // zrobić tak ęzby przy zmianie wyszukiwania niewywalało programu bez użyczia tego try / catch
-            translated_words.ItemsSource = AllWords2langList;
-            TranslatedWordsList.Clear();
-            foreach (translation_class trans in TranslationList)
+            try
             {
-                if (lang_selected)
+                selectedItem = (Word_class)matchingWords.Items.GetItemAt(matchingWords.SelectedIndex);  // zrobić tak ęzby przy zmianie wyszukiwania niewywalało programu bez użyczia tego try / catch
+                translated_words.ItemsSource = AllWords2langList;
+                TranslatedWordsList.Clear();
+                foreach (translation_class trans in TranslationList)
                 {
-                    if (trans.Pl_Word_Id == selectedItem.Id)
+                    if (lang_selected)
                     {
-                        
-                        temp = (Word_class)AllWords2langList.Find(x => x.Id == trans.Eng_Word_Id);
-                        TranslatedWordsList.Add(temp);
+                        if (trans.Pl_Word_Id == selectedItem.Id)
+                        {
+
+                            temp = (Word_class)AllWords2langList.Find(x => x.Id == trans.Eng_Word_Id);
+                            TranslatedWordsList.Add(temp);
+                        }
+                    }
+                    else
+                    {
+                        if (trans.Eng_Word_Id == selectedItem.Id)
+                        {
+
+                            temp = (Word_class)AllWords2langList.Find(x => x.Id == trans.Pl_Word_Id);
+                            TranslatedWordsList.Add(temp);
+                        }
+
                     }
                 }
-                else 
-                {
-                    if (trans.Eng_Word_Id == selectedItem.Id)
-                    {
-
-                        temp = (Word_class)AllWords2langList.Find(x => x.Id == trans.Pl_Word_Id);
-                        TranslatedWordsList.Add(temp);
-                    }
-
-                }
-            }
-            translated_words.ItemsSource = TranslatedWordsList;
-            selected_word_and_desc.Content = selectedItem.Word;
+                translated_words.ItemsSource = TranslatedWordsList;
+                selected_word_and_desc.Content = selectedItem.Word;
             }
             catch { }
         }
@@ -122,7 +123,7 @@ namespace Dictionary
                 ImgL.Source = new BitmapImage(new Uri("./../../Pl_flag.png", UriKind.Relative));
 
                 AllWordsList = connector.GetPerson_All();
-                AllWords2langList = connector.GetPerson_All_eng();
+                AllWords2langList = connector.GetPerson_All_eng();// można użyć zamiany list zamiast sczytywania z bazy ale tak jest prosciej i bezpieczniej ale niekoniecznie szybciej
 
                 search_bar_label.Content = "Wyszukaj słowo:";
                 lang_switch.Content = "Zmiana Języka";
@@ -131,23 +132,24 @@ namespace Dictionary
             {
                 AllWords2langList = connector.GetPerson_All();
                 AllWordsList = connector.GetPerson_All_eng();
-                
+
                 ImgL.Source = new BitmapImage(new Uri("./../../Eng_flag.png", UriKind.Relative));
                 ImgP.Source = new BitmapImage(new Uri("./../../Pl_flag.png", UriKind.Relative));
 
                 search_bar_label.Content = "Search a word:";
                 lang_switch.Content = "Language Change";
             }
-            
+
             TranslatedWordsList.Clear();
             translated_words.ItemsSource = AllWordsList;
             translated_words.ItemsSource = TranslatedWordsList;
 
             matchingWords.ItemsSource = AllWordsList;
 
+
             selected_word_and_desc.Content = "";
             lang_selected = !lang_selected;
             search_bar.Text = "";
         }
-    }   
+    }
 }

@@ -52,6 +52,12 @@ namespace Dictionary
                 Eng_Word_Id = 1,
                 Pl_Word_Id = 3
             });
+            output.Add(new translation_class()
+            {
+                Id = 2,
+                Eng_Word_Id = 6,
+                Pl_Word_Id = 5
+            });
 
             return output;
         }
@@ -80,14 +86,26 @@ namespace Dictionary
             output.Add(new Word_class()
             {
                 Id = 4,
-                Word = "01",
-                Description = "one"
+                Word = "do",
+                Description = "participate some movement or activity"
             });
             output.Add(new Word_class()
             {
                 Id = 5,
                 Word = "02",
                 Description = "two"
+            });
+            output.Add(new Word_class()
+            {
+                Id = 6,
+                Word = "03",
+                Description = "threeeeeeeeee eeeeeeeeeeee eeeeeeeeeeeeeeeeee Eeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeee"
+            });
+            output.Add(new Word_class()
+            {
+                Id = 6,
+                Word = "03",
+                Description = "threeeeeeeeee eeeeeeeeeeee eeeeeeeeeeeeeeeeee Eeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeee"
             });
             output.Add(new Word_class()
             {
@@ -110,8 +128,8 @@ namespace Dictionary
             output.Add(new Word_class()
             {
                 Id = 1,
-                Word = "01",
-                Description = "jeden"
+                Word = "robić",
+                Description = "wykonywać czynność"
             }) ;
             output.Add(new Word_class()
             {
@@ -137,6 +155,7 @@ namespace Dictionary
                 Word = "05",
                 Description = "pięć"
             });
+
 
             //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(CnnString(db)))
             //{
