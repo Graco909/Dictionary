@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionary"
         mc:Ignorable="d"
-        Title="Dictionary" Height="925" Width="800" WindowStyle="ThreeDBorderWindow" Icon="/flag_icon.png" ResizeMode="NoResize" Cursor="Cross">
+        Title="Dictionary" Height="925" Width="800" WindowStyle="ThreeDBorderWindow" Icon="/flag_icon.png" ResizeMode="NoResize" Cursor="Arrow">
     <Window.Background>
         <RadialGradientBrush>
             <GradientStop Offset="0"/>
             <GradientStop Color="Black" Offset="1"/>
+            <GradientStop/>
         </RadialGradientBrush>
     </Window.Background>
 

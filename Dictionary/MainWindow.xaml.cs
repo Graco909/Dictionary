@@ -137,7 +137,7 @@ namespace Dictionary
                 ImgP.Source = new BitmapImage(new Uri("./../../Pl_flag.png", UriKind.Relative));
 
                 search_bar_label.Content = "Search a word:";
-                lang_switch.Content = "Language Change";
+                lang_switch.Content = "Change Language";
             }
 
             TranslatedWordsList.Clear();
