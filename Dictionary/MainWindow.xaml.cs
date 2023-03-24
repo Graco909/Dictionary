@@ -157,7 +157,15 @@ namespace Dictionary
             try
             {
                 selectedItem = (Word_class)translated_words.Items.GetItemAt(translated_words.SelectedIndex);
-                string target = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                string target;
+                if (!lang_selected)
+                {
+                    target = $"https://dictionary.cambridge.org/dictionary/polish-english/{selectedItem.Word}";
+                }
+                else
+                {
+                    target = $"https://dictionary.cambridge.org/dictionary/english-polish/{selectedItem.Word}";
+                }
                 System.Diagnostics.Process.Start(target);
                 translated_words.UnselectAll();
             }
