@@ -69,7 +69,7 @@
             <Label x:Name="search_bar_label" Content="Wyszukaj słowo" Padding="0,7,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="18" Background="{x:Null}" Width="170" Height="43"/>
         </Border>
         <Border Grid.Column="1" CornerRadius="20" Background="#88ffffff" Width="370" HorizontalAlignment="Left" Height="744" VerticalAlignment="Top" Margin="10,127,0,0">
-            <ListView x:Name="translated_words" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="10,10,10,0" Height="732" VerticalAlignment="Top" ScrollViewer.CanContentScroll="False" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="18" BorderBrush="{x:Null}" Background="{x:Null}" Padding="3,0,0,0">
+            <ListView x:Name="translated_words" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="10,10,10,0" Height="732" VerticalAlignment="Top" ScrollViewer.CanContentScroll="False" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="18" BorderBrush="{x:Null}" Background="{x:Null}" Padding="3,0,0,0" SelectionChanged="translated_words_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -80,7 +80,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Button x:Name="lang_switch" Content="Zmiana Języka" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.563" Click="Button_Click" Foreground="Black" Width="156" FontSize="18" Height="38" Grid.ColumnSpan="2" BorderBrush="{x:Null}">
+        <Button x:Name="lang_switch" Content="Zmiana Języka" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,0.527" Click="Button_Click" Foreground="Black" Width="156" FontSize="18" Height="38" Grid.ColumnSpan="2" BorderBrush="{x:Null}">
             <Button.Background>
                 <SolidColorBrush Color="#88FFFFFF" Opacity="1"/>
             </Button.Background>

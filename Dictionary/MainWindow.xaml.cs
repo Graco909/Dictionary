@@ -151,5 +151,17 @@ namespace Dictionary
             lang_selected = !lang_selected;
             search_bar.Text = "";
         }
+
+        private void translated_words_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                selectedItem = (Word_class)translated_words.Items.GetItemAt(translated_words.SelectedIndex);
+                string target = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                System.Diagnostics.Process.Start(target);
+                translated_words.UnselectAll();
+            }
+            catch{ }
+        }
     }
 }
