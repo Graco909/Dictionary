@@ -80,7 +80,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Button x:Name="lang_switch" Content="Zmiana Języka" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,0.527" Click="Button_Click" Foreground="Black" Width="156" FontSize="18" Height="38" Grid.ColumnSpan="2" BorderBrush="{x:Null}">
+        <Button x:Name="lang_switch" Content="Zmiana Języka" Margin="320,10,320,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,0.527" Click="Button_Click" Foreground="Black" FontSize="18" Height="38" Grid.ColumnSpan="2" BorderBrush="{x:Null}">
             <Button.Background>
                 <SolidColorBrush Color="#88FFFFFF" Opacity="1"/>
             </Button.Background>
@@ -91,7 +91,7 @@
             </Border.Background>
             <Label x:Name="selected_word_and_desc" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="350" FontWeight="Bold" Grid.Column="1" FontSize="18" VerticalContentAlignment="Center" Padding="10,5,5,5" Height="61" Background="{x:Null}"/>
         </Border>
-        
+
 
     </Grid>
 </Window>
